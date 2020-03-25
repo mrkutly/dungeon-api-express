@@ -1,5 +1,6 @@
 module.exports = {
 	extends: ['airbnb-base'],
+	parser: 'babel-eslint',
 	rules: {
 		'indent': ['error', 'tab', { SwitchCase: 1 }],
 		'no-tabs': 0,
@@ -9,5 +10,6 @@ module.exports = {
 		'camelcase': 0,
 		'prefer-const': 0,
 		'no-underscore-dangle': 0,
+		'opti'
 	}
 }

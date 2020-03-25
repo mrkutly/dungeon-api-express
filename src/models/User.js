@@ -1,6 +1,7 @@
 import { model, Schema } from 'mongoose';
 import validator from 'validator';
-import passportLocalMongoose from 'passport-local-mongoose';
+import bcrypt from 'bcrypt';
+import { parseToken } from '../utils/tokenManager';
 
 const userSchema = new Schema({
 	email: {
@@ -16,8 +17,31 @@ const userSchema = new Schema({
 		required: 'Please supply a name.',
 		trim: true,
 	},
+	password: String,
+	resetPasswordToken: String,
+	resetPasswordExpires: Date,
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.pre('save', async function hashPassword(next) {
+	try {
+		if (!this.isModified('password')) return next();
+
+		const hashedPassword = await bcrypt.hash(this.password, 10);
+		this.password = hashedPassword;
+	} catch (error) {
+		next(error);
+	}
+});
+
+userSchema.methods.authenticate = async function authenticate(password) {
+	const isAuthenticated = await bcrypt.compare(password, this.password);
+	return isAuthenticated;
+};
+
+userSchema.statics.fromToken = async function fromToken(token) {
+	const { userId } = parseToken(token);
+	const user = await this.findById(userId);
+	return user;
+};
 
 export default model('User', userSchema);

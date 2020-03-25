@@ -8,11 +8,4 @@ const secret = process.env.APP_SECRET;
 
 export const makeToken = (user) => jwt.sign({ userId: user._id }, secret, { expiresIn: '365 days' });
 
-export const parseToken = (token) => {
-	try {
-		const parsed = jwt.verify(token, secret);
-		return parsed;
-	} catch (err) {
-		return err;
-	}
-};
+export const parseToken = (token) => jwt.verify(token, secret);

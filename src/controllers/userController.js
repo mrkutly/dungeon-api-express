@@ -26,8 +26,7 @@ export const handleValidationErrors = (req, res, next) => {
 
 export const signup = async (req, res) => {
 	const { name, password, email } = req.body;
-	const user = new User({ name, email });
-	await user.setPassword(password);
+	const user = new User({ name, email, password });
 	await user.save();
 	const token = makeToken(user);
 	res.json({ token });
