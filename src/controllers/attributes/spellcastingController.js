@@ -1,4 +1,4 @@
-import { Spellcasting } from '../models/attributes';
+import { Spellcasting } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const spellcastings = await Spellcasting.find({});

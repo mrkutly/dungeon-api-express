@@ -1,4 +1,4 @@
-import { Subclass } from '../models/attributes';
+import { Subclass } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const subclasses = await Subclass.find({});

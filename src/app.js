@@ -6,6 +6,7 @@ import * as errorHandlers from './middlewares/errorHandlers';
 import userRouter from './routes/userRouter';
 import authRouter from './routes/authRouter';
 import attributeRouter from './routes/attributeRouter';
+import characterRouter from './routes/characterRouter';
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(logRequest);
 app.use('/', authRouter);
 app.use('/', attributeRouter);
 app.use('/signup', userRouter);
+app.use('/characters', characterRouter);
 
 // Error handlers
 app.use(errorHandlers.notFound);

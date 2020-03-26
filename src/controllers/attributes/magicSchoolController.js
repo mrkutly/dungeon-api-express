@@ -1,4 +1,4 @@
-import { MagicSchool } from '../models/attributes';
+import { MagicSchool } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const magicSchools = await MagicSchool.find({});

@@ -1,4 +1,4 @@
-import { Spell } from '../models/attributes';
+import { Spell } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const spells = await Spell.find({});

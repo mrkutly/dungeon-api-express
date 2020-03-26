@@ -1,4 +1,4 @@
-import { DamageType } from '../models/attributes';
+import { DamageType } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const damageTypes = await DamageType.find({});

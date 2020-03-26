@@ -6,7 +6,7 @@ const attributeSchema = new Schema({
 });
 
 export const AbilityScore = model('AbilityScore', attributeSchema, 'abilityScores');
-export const CharacterClass = model('Class', attributeSchema);
+export const CharacterClass = model('CharacterClass', attributeSchema, 'classes');
 export const Condition = model('Condition', attributeSchema);
 export const DamageType = model('DamageType', attributeSchema, 'damageTypes');
 export const Equipment = model('Equipment', attributeSchema, 'equipment');

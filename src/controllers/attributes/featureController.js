@@ -1,4 +1,4 @@
-import { Feature } from '../models/attributes';
+import { Feature } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const features = await Feature.find({});

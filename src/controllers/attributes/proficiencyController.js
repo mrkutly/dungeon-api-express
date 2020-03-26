@@ -1,4 +1,4 @@
-import { Proficiency } from '../models/attributes';
+import { Proficiency } from '../../models/attributes';
 
 export const index = async (req, res) => {
 	const proficiencies = await Proficiency.find({});
