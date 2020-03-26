@@ -26,8 +26,12 @@ export const handleValidationErrors = (req, res, next) => {
 
 export const signup = async (req, res) => {
 	const { name, password, email } = req.body;
+
+	if (!name || !password) throw new Error('Username and password required.');
+
 	const user = new User({ name, email, password });
 	await user.save();
+	
 	const token = makeToken(user);
-	res.json({ token });
+	res.status(201).json({ token });
 };

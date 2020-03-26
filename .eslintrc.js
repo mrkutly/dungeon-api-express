@@ -10,6 +10,5 @@ module.exports = {
 		'camelcase': 0,
 		'prefer-const': 0,
 		'no-underscore-dangle': 0,
-		'opti'
 	}
 }

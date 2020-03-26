@@ -14,13 +14,15 @@ mongoose.connect(process.env.MONGODB_URI, {
 	useCreateIndex: true,
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
 });
 mongoose.connection.on('error', (err) => {
 	Logger.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
 // import all of our models
-import './models/User';
+// eslint-disable-next-line no-unused-vars
+import * as models from './models';
 
 
 // Start our app
