@@ -5,6 +5,7 @@ import logRequest from './middlewares/logRequest';
 import * as errorHandlers from './middlewares/errorHandlers';
 import userRouter from './routes/userRouter';
 import authRouter from './routes/authRouter';
+import attributeRouter from './routes/attributeRouter';
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(logRequest);
 
 // Routes
 app.use('/', authRouter);
+app.use('/', attributeRouter);
 app.use('/signup', userRouter);
 
 // Error handlers

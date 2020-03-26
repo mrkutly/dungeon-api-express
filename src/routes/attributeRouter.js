@@ -1,0 +1,50 @@
+import { Router } from 'express';
+import { catchError } from '../middlewares/errorHandlers';
+import * as abilityScoreController from '../controllers/abilityScoreController';
+import * as classController from '../controllers/classController';
+import * as conditionController from '../controllers/conditionController';
+import * as damageController from '../controllers/damageController';
+import * as equipmentCategoryController from '../controllers/equipmentCategoryController';
+import * as equipmentController from '../controllers/equipmentController';
+import * as featureController from '../controllers/featureController';
+import * as languageController from '../controllers/languageController';
+import * as levelController from '../controllers/levelController';
+import * as magicSchoolController from '../controllers/magicSchoolController';
+import * as monsterController from '../controllers/monsterController';
+import * as proficiencyController from '../controllers/proficiencyController';
+import * as raceController from '../controllers/raceController';
+import * as skillController from '../controllers/skillController';
+import * as spellcastingController from '../controllers/spellcastingController';
+import * as spellController from '../controllers/spellController';
+import * as startingEquipmentController from '../controllers/startingEquipmentController';
+import * as subclassController from '../controllers/subclassController';
+import * as subraceController from '../controllers/subraceController';
+import * as traitController from '../controllers/traitController';
+import * as weaponPropertyController from '../controllers/weaponPropertyController';
+
+
+const router = new Router();
+
+router.get('/ability-scores', catchError(abilityScoreController.index));
+router.get('/classes', catchError(classController.index));
+router.get('/conditions', catchError(conditionController.index));
+router.get('/damage-types', catchError(damageController.index));
+router.get('/equipment-categories', catchError(equipmentCategoryController.index));
+router.get('/equipment', catchError(equipmentController.index));
+router.get('/features', catchError(featureController.index));
+router.get('/languages', catchError(languageController.index));
+router.get('/levels', catchError(levelController.index));
+router.get('/magic-schools', catchError(magicSchoolController.index));
+router.get('/monsters', catchError(monsterController.index));
+router.get('/proficiencies', catchError(proficiencyController.index));
+router.get('/races', catchError(raceController.index));
+router.get('/skills', catchError(skillController.index));
+router.get('/spellcasting', catchError(spellcastingController.index));
+router.get('/spells', catchError(spellController.index));
+router.get('/starting-equipment', catchError(startingEquipmentController.index));
+router.get('/subclasses', catchError(subclassController.index));
+router.get('/subraces', catchError(subraceController.index));
+router.get('/traits', catchError(traitController.index));
+router.get('/weapon-properties', catchError(weaponPropertyController.index));
+
+export default router;
