@@ -1,15 +1,25 @@
 import { model, Schema } from 'mongoose';
 
-const characterEquipmentSchema = new Schema({
-	quantity: { type: Number, required: true, default: 1 },
-	item: { type: Schema.Types.ObjectId, ref: 'Equipment', required: true },
-});
-
 const characterSchema = new Schema({
 	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 		required: true,
+	},
+	experience: {
+		type: Number,
+		required: true,
+		default: 0,
+	},
+	maxHp: {
+		type: Number,
+		required: true,
+		default: 1,
+	},
+	currentHp: {
+		type: Number,
+		required: true,
+		default: 1,
 	},
 	name: {
 		type: String,
@@ -80,7 +90,13 @@ const characterSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'MagicSchool',
 	},
-	equipment: [characterEquipmentSchema],
+	equipment: [{
+		item: {
+			type: Schema.Types.ObjectId,
+			ref: 'Equipment',
+		},
+		quantity: Number,
+	}],
 	features: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Feature',
@@ -115,13 +131,13 @@ const characterSchema = new Schema({
 	},
 });
 
-characterSchema.statics.findByIdAndPopulate = async function findAndPop(id) {
-	const character = await this.findById(id)
+characterSchema.statics.findOneAndPopulate = async function findAndPop(where) {
+	const character = await this.findOne(where)
 		.populate('race')
 		.populate('characterClass')
 		.populate('features')
 		.populate('magicSchool')
-		.populate('equipment')
+		.populate('equipment.item')
 		.populate('skills')
 		.populate('spells')
 		.populate('subrace')

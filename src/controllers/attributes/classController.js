@@ -1,6 +1,12 @@
 import { CharacterClass } from '../../models/attributes';
 
 export const index = async (req, res) => {
-	const classes = await CharacterClass.find({});
-	res.status(200).json({ classes });
+	const data = await CharacterClass.find({});
+	res.status(200).json({ data });
+};
+
+export const show = async (req, res) => {
+	const { _id } = req.params;
+	const data = await CharacterClass.findById(_id);
+	res.status(200).json({ data });
 };

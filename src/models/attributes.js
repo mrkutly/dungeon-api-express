@@ -26,7 +26,3 @@ export const Subclass = model('Subclass', attributeSchema);
 export const Subrace = model('Subrace', attributeSchema);
 export const Trait = model('Trait', attributeSchema);
 export const WeaponProperty = model('WeaponProperty', attributeSchema, 'weaponProperties');
-
-
-
-

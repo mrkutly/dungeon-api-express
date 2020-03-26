@@ -1,6 +1,12 @@
 import { Language } from '../../models/attributes';
 
 export const index = async (req, res) => {
-	const languages = await Language.find({});
-	res.status(200).json({ languages });
+	const data = await Language.find({});
+	res.status(200).json({ data });
+};
+
+export const show = async (req, res) => {
+	const { _id } = req.params;
+	const data = await Language.findById(_id);
+	res.status(200).json({ data });
 };

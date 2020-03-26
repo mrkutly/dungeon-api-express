@@ -47,4 +47,26 @@ router.get('/subraces', catchError(subraceController.index));
 router.get('/traits', catchError(traitController.index));
 router.get('/weapon-properties', catchError(weaponPropertyController.index));
 
+router.get('/ability-scores/:_id', catchError(abilityScoreController.show));
+router.get('/classes/:_id', catchError(classController.show));
+router.get('/conditions/:_id', catchError(conditionController.show));
+router.get('/damage-types/:_id', catchError(damageController.show));
+router.get('/equipment-categories/:_id', catchError(equipmentCategoryController.show));
+router.get('/equipment/:_id', catchError(equipmentController.show));
+router.get('/features/:_id', catchError(featureController.show));
+router.get('/languages/:_id', catchError(languageController.show));
+router.get('/levels/:_id', catchError(levelController.show));
+router.get('/magic-schools/:_id', catchError(magicSchoolController.show));
+router.get('/monsters/:_id', catchError(monsterController.show));
+router.get('/proficiencies/:_id', catchError(proficiencyController.show));
+router.get('/races/:_id', catchError(raceController.show));
+router.get('/skills/:_id', catchError(skillController.show));
+router.get('/spellcasting/:_id', catchError(spellcastingController.show));
+router.get('/spells/:_id', catchError(spellController.show));
+router.get('/starting-equipment/:_id', catchError(startingEquipmentController.show));
+router.get('/subclasses/:_id', catchError(subclassController.show));
+router.get('/subraces/:_id', catchError(subraceController.show));
+router.get('/traits/:_id', catchError(traitController.show));
+router.get('/weapon-properties/:_id', catchError(weaponPropertyController.show));
+
 export default router;

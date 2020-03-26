@@ -1,6 +1,12 @@
 import { DamageType } from '../../models/attributes';
 
 export const index = async (req, res) => {
-	const damageTypes = await DamageType.find({});
-	res.status(200).json({ damageTypes });
+	const data = await DamageType.find({});
+	res.status(200).json({ data });
+};
+
+export const show = async (req, res) => {
+	const { _id } = req.params;
+	const data = await DamageType.findById(_id);
+	res.status(200).json({ data });
 };

@@ -12,7 +12,7 @@ export const index = async (req, res) => {
 export const show = async (req, res) => {
 	const { user } = req;
 	const _id = req.params.id;
-	const character = await Character.find({ user, _id });
+	const character = await Character.findOneAndPopulate({ user, _id });
 	if (!character) throw new Error('Character not found');
 	res.status(200).json({ character });
 };
