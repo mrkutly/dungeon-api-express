@@ -8,7 +8,8 @@
 	"scripts": {
 		"dev": "nodemon --exec babel-node src/start.js",
 		"build": "npx babel src --out-dir dist",
-		"start": "npx pm2-runtime start pm2.yml"
+		"start": "npx pm2-runtime start pm2.yml",
+		"db:seed:packs": "npx babel-node src/db/seed.js"
 	},
 	"dependencies": {
 		"bcrypt": "^4.0.1",

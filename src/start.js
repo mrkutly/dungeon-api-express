@@ -1,6 +1,8 @@
 /* eslint-disable import/first */
+/* eslint-disable no-unused-vars */
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import * as models from './models';
 import app from './app';
 import Logger from './utils/Logger';
 
@@ -19,11 +21,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 mongoose.connection.on('error', (err) => {
 	Logger.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
-
-// import all of our models
-// eslint-disable-next-line no-unused-vars
-import * as models from './models';
-
 
 // Start our app
 app.set('port', process.env.PORT || 8888);
