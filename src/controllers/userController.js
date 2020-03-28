@@ -18,7 +18,7 @@ export const validateSignupFunctions = [
 export const handleValidationErrors = (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		res.status(400).json({ errors });
+		res.status(400).json(errors);
 		return; // stop the fn from running
 	}
 	next();
@@ -31,7 +31,7 @@ export const signup = async (req, res) => {
 
 	const user = new User({ name, email, password });
 	await user.save();
-	
+
 	const token = makeToken(user);
-	res.status(201).json({ token });
+	res.status(201).json({ token, user: { name, email } });
 };

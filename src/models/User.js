@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcrypt';
 import { parseToken } from '../utils/tokenManager';
+import Logger from '../utils/Logger';
 
 const userSchema = new Schema({
 	email: {
@@ -34,8 +35,13 @@ userSchema.pre('save', async function hashPassword(next) {
 });
 
 userSchema.methods.authenticate = async function authenticate(password) {
-	const isAuthenticated = await bcrypt.compare(password, this.password);
-	return isAuthenticated;
+	try {
+		const isAuthenticated = await bcrypt.compare(password, this.password);
+		return isAuthenticated;
+	} catch (error) {
+		Logger.error(error.stack);
+		return false;
+	}
 };
 
 userSchema.statics.fromToken = async function fromToken(token) {

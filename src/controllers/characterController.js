@@ -42,7 +42,7 @@ export const update = async (req, res) => {
 export const validateCreateFns = [
 	body('name').notEmpty().withMessage('A name is required.'),
 	body('race').notEmpty().withMessage('A race is required.'),
-	body('characterClass').notEmpty().withMessage('A characterClass is required.'),
+	body('characterClass').notEmpty().withMessage('A class is required.'),
 	body('level')
 		.isInt()
 		.custom((val) => val <= 20 && val > 0)
