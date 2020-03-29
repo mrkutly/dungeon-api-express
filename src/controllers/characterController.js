@@ -27,6 +27,34 @@ export const create = async (req, res) => {
 	res.status(201).json({ character });
 };
 
+export const removeAttribute = async (req, res) => {
+	const { user } = req;
+	const _id = req.params.id;
+	const { attribute, attributeId } = req.params;
+	const character = await Character.findOne({ user, _id });
+	if (!character) throw new Error('Character not found');
+
+	// remove the deleted attribute
+	const filtered = character[attribute].filter((a) => a.toString() !== attributeId);
+	character[attribute] = filtered;
+	await character.save();
+
+	res.status(201).json({ character });
+};
+
+export const removeEquipment = async (req, res) => {
+	const { user } = req;
+	const { id: _id, equipmentId } = req.params;
+	const character = await Character.findOne({ user, _id });
+	if (!character) throw new Error('Character not found');
+
+	const filtered = character.equipment.filter((e) => e._id.toString() !== equipmentId);
+	character.equipment = filtered;
+	await character.save();
+
+	res.status(201).json({ character });
+};
+
 export const update = async (req, res) => {
 	const { user } = req;
 	const _id = req.params.id;

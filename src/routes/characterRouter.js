@@ -28,5 +28,14 @@ router.post('/', [
 	catchError(characterController.create),
 ]);
 
+router.delete('/:id/equipment/:equipmentId', [
+	catchError(checkAuthHeader),
+	catchError(characterController.removeEquipment),
+]);
+
+router.delete('/:id/:attribute/:attributeId', [
+	catchError(checkAuthHeader),
+	catchError(characterController.removeAttribute),
+]);
 
 export default router;

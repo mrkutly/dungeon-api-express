@@ -29,17 +29,17 @@ const characterSchema = new Schema({
 	gold: {
 		type: Number,
 		required: true,
-		default: 1,
+		default: 0,
 	},
 	silver: {
 		type: Number,
 		required: true,
-		default: 1,
+		default: 0,
 	},
 	copper: {
 		type: Number,
 		required: true,
-		default: 1,
+		default: 0,
 	},
 	dexterity: {
 		type: Number,
@@ -121,6 +121,10 @@ const characterSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Trait',
 	}],
+	conditions: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Condition',
+	}],
 	subclass: {
 		type: Schema.Types.ObjectId,
 		ref: 'Subclass',
@@ -144,6 +148,7 @@ characterSchema.statics.findOneAndPopulate = async function findAndPop(where) {
 		.populate('subclass')
 		.populate('traits')
 		.populate('proficiencies')
+		.populate('conditions')
 		.populate('languages');
 	return character;
 };
