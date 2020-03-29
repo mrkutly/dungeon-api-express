@@ -21,6 +21,11 @@ router.put('/:id', [
 	catchError(characterController.update),
 ]);
 
+router.put('/:id/equipment', [
+	catchError(checkAuthHeader),
+	catchError(characterController.updateEquipmentQuantity),
+]);
+
 router.post('/', [
 	catchError(checkAuthHeader),
 	...characterController.validateCreateFns,

@@ -55,6 +55,20 @@ export const removeEquipment = async (req, res) => {
 	res.status(201).json({ character });
 };
 
+export const updateEquipmentQuantity = async (req, res) => {
+	const { user } = req;
+	const _id = req.params.id;
+	const { equipment } = req.body;
+	const character = await Character.findOne({ user, _id });
+	if (!character) throw new Error('Character not found');
+
+	const filtered = character.equipment.filter((e) => e._id.toString() !== equipment._id);
+	character.equipment = [...filtered, equipment];
+	await character.save();
+
+	res.status(201).json({ character });
+};
+
 export const update = async (req, res) => {
 	const { user } = req;
 	const _id = req.params.id;
