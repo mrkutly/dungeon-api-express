@@ -62,8 +62,8 @@ export const updateEquipmentQuantity = async (req, res) => {
 	const character = await Character.findOne({ user, _id });
 	if (!character) throw new Error('Character not found');
 
-	const filtered = character.equipment.filter((e) => e._id.toString() !== equipment._id);
-	character.equipment = [...filtered, equipment];
+	const foundIdx = character.equipment.findIndex((e) => e._id.toString() === equipment._id);
+	character.equipment[foundIdx].quantity = equipment.quantity;
 	await character.save();
 
 	res.status(201).json({ character });
@@ -75,7 +75,7 @@ export const update = async (req, res) => {
 	const character = await Character.findOneAndUpdate({ user, _id }, req.body, {
 		new: true,
 		runValidators: true,
-	});
+	}).populate('equipment.item');
 
 	if (!character) throw new Error('Character not found');
 	res.status(200).json({ character });

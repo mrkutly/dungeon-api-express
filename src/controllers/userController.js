@@ -28,6 +28,9 @@ export const signup = async (req, res) => {
 	const { name, password, email } = req.body;
 
 	if (!name || !password) throw new Error('Username and password required.');
+	const foundUser = await User.findOne({ email });
+
+	if (foundUser) throw new Error('An account already exists for that email');
 
 	const user = new User({ name, email, password });
 	await user.save();
