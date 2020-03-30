@@ -97,6 +97,10 @@ const characterSchema = new Schema({
 		},
 		quantity: Number,
 	}],
+	feats: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Feat',
+	}],
 	features: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Feature',
@@ -139,6 +143,7 @@ characterSchema.statics.findOneAndPopulate = async function findAndPop(where) {
 	const character = await this.findOne(where)
 		.populate('race')
 		.populate('characterClass')
+		.populate('feats')
 		.populate('features')
 		.populate('magicSchool')
 		.populate('equipment.item')

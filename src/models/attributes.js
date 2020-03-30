@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const attributeSchema = new Schema({
 	name: String,
-	index: String,
+	index: { type: String, unique: true },
 });
 
 export const AbilityScore = model('AbilityScore', attributeSchema, 'abilityScores');
@@ -26,3 +26,13 @@ export const Subclass = model('Subclass', attributeSchema);
 export const Subrace = model('Subrace', attributeSchema);
 export const Trait = model('Trait', attributeSchema);
 export const WeaponProperty = model('WeaponProperty', attributeSchema, 'weaponProperties');
+
+// Feats which I am seeding myself
+const featSchema = new Schema({
+	name: String,
+	index: { type: String, unique: true },
+	desc: [String],
+	prerequisite: String,
+});
+
+export const Feat = model('Feat', featSchema);

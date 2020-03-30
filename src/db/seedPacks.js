@@ -8,11 +8,10 @@ import { Equipment } from '../models/attributes';
 
 const envFile = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 
-// import environmental variables from our variables.env file
-dotenv.config({ path: envFile });
+const { parsed } = dotenv.config({ path: envFile });
 
 // Connect to our Database and handle any bad connections
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(parsed.MONGODB_URI, {
 	useCreateIndex: true,
 	useNewUrlParser: true,
 	useUnifiedTopology: true,

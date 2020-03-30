@@ -9,8 +9,10 @@
 		"dev": "nodemon --exec babel-node src/start.js",
 		"build": "npx babel src --out-dir dist",
 		"start": "npx pm2-runtime start pm2.yml",
-		"db:seed:packs": "npx babel-node src/db/seed.js",
-		"db:seed:packs:prod": "NODE_ENV=production npx babel-node src/db/seed.js"
+		"db:seed:packs": "NODE_ENV=development npx babel-node src/db/seedPacks.js",
+		"db:seed:feats": "NODE_ENV=development npx babel-node src/db/seedFeats.js",
+		"db:seed:packs:prod": "NODE_ENV=production npx babel-node src/db/seedPacks.js",
+		"db:seed:feats:prod": "NODE_ENV=production npx babel-node src/db/seedPacks.js"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.2",
